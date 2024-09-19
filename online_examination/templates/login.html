@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}  
+        {% if messages %}
+	  <div class="flash-message">
+          {% for category, message in messages %}
+            {{ message }}
+          {% endfor %}
+	  </div>
+        {% endif %}
+    {% endwith %}
+    <section class="form-section">
+      <h1>Online Examination Website</h1>
+      <form class="form" method="POST" action="">
+        {{ form.hidden_tag() }}
+        <!--<input type="text" placeholder="Email" class="input"><br>
+	<input type="password" placeholder="Password" class="input"><br>-->
+	{% if form.email.errors %}
+	  {{ form.email(placeholder="Email", class="input error") }}<br>
+	  <div class="error-message">
+	    {% for error in form.email.errors %}
+	    <span> {{ error }}</span>
+	    {% endfor %}
+	  </div>
+	{% else %}
+	  {{ form.email(placeholder="Email", class="input") }}<br>
+	{% endif %}
+	{% if form.password.errors %}
+	  {{ form.password(placeholder="Password", class="input error") }}<br>
+	  <div class="error-message">
+            {% for error in form.password.errors %}
+	    <span> {{ error }}</span>
+	    {% endfor %}
+	  </div>
+        {% else %}
+	  {{ form.password(placeholder="password", class="input") }}<br>
+	{% endif %}
+	{{ form.remember(class="text-size")}} {{ form.remember.label(class="text-size") }}
+        <p><a href="tobeassigned">Forgot your password?</a></p>
+        <div class="button-container">
+		<!--<input type="submit" value="Login" class="button login">-->
+		{{ form.submit(class="button login") }}
+	  <a href="/signup" class="button signup link" >Sign up</a>
+        </div>
+      </form>
+    </section>
+    
+  </body>
+</html>

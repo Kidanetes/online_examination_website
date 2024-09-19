@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Account page</title>
+    <link rel="stylesheet" href="../static/styles/home.css">
+    <link rel="stylesheet" href="../static/styles/account.css">
+  </head>
+  <body>
+    <ul id="navigation">
+      <li><a href={{ url_for('home') }}>Home</a></li>
+      <li><a href={{ url_for('account') }} class="active">Account</a></li>
+      <li><a href={{ url_for('about') }}>About</a><li>
+      <li class="logout"><a href={{ url_for('logout') }}>Log out</a></li>
+      </ul>
+    <h1 id="first">{{ current_user.firstName }} {{ current_user.lastName }} </h1>
+    <p>{{ current_user.email }} </p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-message">
+	    {% for category, message in messages %}
+	    {{ message }}
+	    {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <section class="container">
+    
+    <section class="form-section">
+      <h3>Do you want to change your password?</h3>
+      <form class="form" method="POST" action="">
+        {{ form.hidden_tag() }}
+	{% if form.old_password.errors %}
+	{{ form.old_password(placeholder="Old password", class="input error") }}<br>
+	<div class="error-message">
+		{% for error in form.old_password.errors %}
+		<span> {{ error }}</span>
+		{% endfor %}
+	</div>
+	{% else %}
+	  {{ form.old_password(placeholder="Old password ", class="input") }}<br>
+	{% endif %}
+	{% if form.new_password.errors %}
+	{{ form.new_password(placeholder="New Password", class="input error") }}<br>
+	<div class="error-message">
+	{% for error in form.new_password.errors %}
+	<span> {{ error }}</span>
+	{% endfor %}
+	</div>
+	{% else %}
+	{{ form.new_password(placeholder="New password", class="input") }}<br>
+	{% endif %}
+	{% if form.confirm_new_password.errors %}
+	{{ form.confirm_new_password(placeholder="Confirm new Password", class="input error") }}<br>
+	  <div class="error-message">
+	    {% for error in form.confirm_new_password.errors %}
+	    <span> {{ error }}</span>
+	    {% endfor %}
+	  </div>
+	{% else %}
+	{{ form.confirm_new_password(placeholder="Confirm new password", class="input") }}<br>
+	{% endif %}
+	<div class="button-container">
+	  {{ form.submit(class="button login") }}
+	</div>
+    </section>
+    </section>
+   </body>
+</html>
