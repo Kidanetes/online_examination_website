@@ -1,6 +1,6 @@
 """ This module will contains classes which will be used for the html forms"""
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from online_examination.models import UserProfile
 from flask_login import current_user
@@ -56,3 +56,24 @@ class UpdatePassword(FlaskForm):
         from online_examination import bcrypt
         if bcrypt.check_password_hash(current_user.password, new_password.data):
             raise ValidationError('This is your current password')
+
+# Form to Add an Exam
+class AddExamForm(FlaskForm):
+    exam_name = StringField('Exam Name', validators=[DataRequired()])
+    submit = SubmitField('Add Exam')
+
+# Form to Delete an Exam
+class DeleteExamForm(FlaskForm):
+    #exam_id = StringField('Exam ID', validators=[DataRequired()])
+    submit = SubmitField('Delete Exam')
+
+
+# Form to Add a Question
+class AddQuestionForm(FlaskForm):
+    question_text = StringField('Question Text', validators=[DataRequired()])
+    choice_1 = StringField('Choice 1', validators=[DataRequired()])
+    choice_2 = StringField('Choice 2', validators=[DataRequired()])
+    choice_3 = StringField('Choice 3', validators=[DataRequired()])
+    choice_4 = StringField('Choice 4', validators=[DataRequired()])
+    correct_choice = SelectField('Correct Choice', choices=[('1', 'Choice 1'), ('2', 'Choice 2'), ('3', 'Choice 3'), ('4', 'Choice 4')], validators=[DataRequired()])
+    submit = SubmitField('Add Question')

@@ -1,0 +1,20 @@
+
+
+{% extends "home.html" %}
+
+{% block content %}
+<div class="container">
+  <h2>{{ exam.exam_name }}</h2>
+  <p>Question {{ question_num }} of {{ total_questions }}</p>
+  <form method="POST">
+    <label>{{ question.question_text }}</label><br>
+    {% for choice in question.choices%}
+    <div>
+      <input type="radio" name="choice" value="{{ choice.id }}">
+      <label>{{ choice.choice_text }}</label>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Next Queston" class="btn btn-danger">
+  </form>
+</div>
+{% endblock %}

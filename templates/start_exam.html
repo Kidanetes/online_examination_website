@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    
+    
+      <div>
+          {% for exam in exams%}
+          <div>
+            <h2>Start Exam: {{ exam.exam_name }}</h2
+    <p>This exam consists of multiple questions. You will see one question at a time. Please answer each question to the best of your ability.</p>
+      <a href="{{ url_for('take_exam', exam_id=exam.id, question_index=0)}}">{{ exam.exam_name}}</a>
+        </div>
+        {% endfor%}
+      </div>
+</div>
+{% endblock %}
+ssse

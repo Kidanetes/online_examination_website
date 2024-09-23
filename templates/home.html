@@ -2,7 +2,8 @@
 <html lang="en-US">
   <head>
     <title>Home Page</title>
-     <link rel="stylesheet" href="../static/styles/home.css">
+     <link rel="stylesheet" href={{ url_for('static', filename='styles/home.css') }}>
+     <link rel="stylesheet" href={{ url_for('static', filename='styles/style1.css') }}>
   </head>
   <body>
       <ul id="navigation">
@@ -19,5 +20,6 @@
         <li class="logout"><a href={{ url_for('logout') }}>Log out</a></li>
         {% endif %}
       </ul>
+      {% block content %} {% endblock content %}
   </body>
 </html>

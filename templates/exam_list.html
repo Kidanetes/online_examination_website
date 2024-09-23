@@ -1,0 +1,23 @@
+{% extends "home.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Manage Exams</h2>
+
+    {% if exams %}
+        <div class="exam-list">
+            {% for exam in exams %} 
+                <div class="exam-item">
+                    <div class="exam-name">{{ exam.exam_name }}</div>
+                    <form action="{{ url_for('take_exam_question', exam_id=exam.id, question_num=1) }}">
+			           <button type="submit" class="btn btn-danger">Start Exam</button>
+			     
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No exams found.</p>
+    {% endif %}
+</div>
+{% endblock %}

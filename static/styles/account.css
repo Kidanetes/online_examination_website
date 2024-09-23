@@ -11,10 +11,9 @@
   height: 50px;
   font-size: 1.1em;
   position: fixed;
-  top: 79%;
+  top: 87%;
   left: 39%;
-  background-color: pink;
-  color: red;
+  background-color: lightskyblue;
   text-align: center;
   line-height: 50px;
 }
