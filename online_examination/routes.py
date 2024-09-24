@@ -88,6 +88,8 @@ def about():
 @app.route('/delete_exam', methods=['GET', 'POST'])
 @login_required
 def delete_exam():
+    """ This will render a template where it listes all exams
+    with the option delete next to them"""
     if current_user.role != 'admin':
         return redirect(url_for('home'))
     exams = Exam.query.all()
@@ -97,18 +99,22 @@ def delete_exam():
 @app.route('/delete_exam/<int:exam_id>', methods=['POST'])
 @login_required
 def delete_exam_action(exam_id):
-  if current_user.role != 'admin':
-      return redirect(url_for('home'))
-  exam = Exam.query.get(exam_id)
-  if exam:
-      db.session.delete(exam)
-      db.session.commit()                              
-      flash('Exam deleted successfully!', 'success')
-  return redirect(url_for('delete_exam'))
+    """ when the user clicks the delete button on delete_exam page,
+    this function will delete the exam from database """
+    if current_user.role != 'admin':
+        return redirect(url_for('home'))
+    exam = Exam.query.get(exam_id)
+    if exam:
+        db.session.delete(exam)
+        db.session.commit()                              
+        flash('Exam deleted successfully!', 'success')
+    return redirect(url_for('delete_exam'))
 
 @app.route('/home')
 @login_required
 def home():
+    """ this function renders the template of the home page of a
+    logged in user"""
     if current_user.role == 'admin':
         return render_template('home1.html', is_admin=True)
     else:
@@ -117,6 +123,7 @@ def home():
 @app.route('/add_exam', methods=['GET', 'POST'])
 @login_required
 def add_exam():
+    """ this function will create new exam and add it to database"""
     if current_user.role != 'admin':
         return redirect(url_for('home'))
 
@@ -133,6 +140,7 @@ def add_exam():
 @app.route('/add_question/<int:exam_id>', methods=['GET', 'POST'])
 @login_required
 def add_question(exam_id):
+    """ this function will add questions to created exams"""
     if current_user.role != 'admin':
         return redirect(url_for('home'))
 
@@ -164,6 +172,7 @@ def add_question(exam_id):
 @app.route('/exam_list', methods=['GET', 'POST'])
 @login_required
 def exam_list():
+    """ this function will list available exams to students"""
     if current_user.role == 'admin':
         return redirect(url_for('home'))
     exams = Exam.query.all()
@@ -173,6 +182,7 @@ def exam_list():
 @app.route('/exams/<int:exam_id>/<int:question_num>', methods=['GET', 'POST'])
 @login_required
 def take_exam_question(exam_id, question_num):
+    """ this function will let students to start exam and display one question per page"""
     if current_user.role == 'admin':
         return redirect(url_for('home'))
     exam = Exam.query.get_or_404(exam_id)
@@ -188,4 +198,3 @@ def take_exam_question(exam_id, question_num):
             return redirect(url_for('home', exam_id=exam_id))
     return render_template('take_exam_question.html', exam=exam, question=questions[question_num - 1],
                             question_num=question_num, total_questions=len(questions))
-    #return redirect(url_for('login'))

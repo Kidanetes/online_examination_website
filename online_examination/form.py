@@ -59,17 +59,19 @@ class UpdatePassword(FlaskForm):
 
 # Form to Add an Exam
 class AddExamForm(FlaskForm):
+    """ this is the format of a form to add new exam"""
     exam_name = StringField('Exam Name', validators=[DataRequired()])
     submit = SubmitField('Add Exam')
 
 # Form to Delete an Exam
 class DeleteExamForm(FlaskForm):
-    #exam_id = StringField('Exam ID', validators=[DataRequired()])
+    """ this is the format of a form to delete an exam"""
     submit = SubmitField('Delete Exam')
 
 
 # Form to Add a Question
 class AddQuestionForm(FlaskForm):
+    """ This is a format of a form to add questions with choices to a exam"""
     question_text = StringField('Question Text', validators=[DataRequired()])
     choice_1 = StringField('Choice 1', validators=[DataRequired()])
     choice_2 = StringField('Choice 2', validators=[DataRequired()])
