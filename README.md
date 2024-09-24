@@ -41,12 +41,18 @@ Students can:
     - Take an exam 
 ## Screenshots
 ![image](https://github.com/user-attachments/assets/9b020b51-6396-4dba-9bc1-2fad8c2a862a)
+
 ![image](https://github.com/user-attachments/assets/a26d76cb-8a22-4666-bbf2-e6752c4760e3)
-![image](https://github.com/user-attachments/assets/46c49550-6865-4e23-8449-11aea152447b)
+
+
+
 ![image](https://github.com/user-attachments/assets/a1a42d3a-d944-426f-ab84-4d161d33ec41)
 
 for admins 
+![image](https://github.com/user-attachments/assets/46c49550-6865-4e23-8449-11aea152447b)
+
 ![image](https://github.com/user-attachments/assets/d20f4346-5a81-4164-8a35-205619c827a2)
+
 ![image](https://github.com/user-attachments/assets/e30b41c1-7b24-4bf5-a40d-84a8a3348a5c)
 for students
 ![image](https://github.com/user-attachments/assets/1bb93bd8-4c40-459b-ac04-394c3e6325c9)
